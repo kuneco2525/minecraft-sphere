@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
+<title>minecraft:sphere</title>
+<link href="mc3d.css" rel="stylesheet">
+<script src="mc3d.js" defer></script>
+</head>
+<body>
+<canvas id="blocks"></canvas>
+<canvas id="coord"></canvas>
+<canvas id="sphere"></canvas>
+<canvas id="point"></canvas>
+<canvas id="cursor"></canvas>
+<h1>minecraft:sphere</h1>
+<h2>基本情報</h2>
+<dl>
+	<dt>直径</dt><dd><input type="number" id="diameter" class="d4" min="1" value="64"></dd>
+	<dt>立ち位置</dt><dd><select id="end"><option value="1">r-0.7</option><option value="2" selected>中央</option><option value="3">r+0.7</option></select></dd>
+	<dt>半径</dt><dd id="radius"></dd>
+	<dt>断面半径</dt><dd id="radiusOfGyration"></dd>
+	<dt>中心距離</dt><dd id="dist"></dd>
+	<dt>円周</dt><dd id="circumference"></dd>
+	<dt>面積</dt><dd id="area"></dd>
+	<dt>表面積</dt><dd id="surface"></dd>
+	<dt>体積</dt><dd id="volume"></dd>
+</dl>
+<h2>中心座標</h2>
+<dl>
+	<dt>X</dt><dd class="coord"><input type="number" id="ox" class="d4" step="0.5" value="248"></dd>
+	<dt>Y</dt><dd class="coord"><input type="number" id="oy" class="d4" step="0.5" value="274"></dd>
+	<dt>Z</dt><dd class="coord"><input type="number" id="oz" class="d4" step="0.5" value="224"></dd>
+</dl>
+<h2>相対座標</h2>
+<dl>
+	<dt>X</dt><dd class="coord"><input type="number" id="rx" class="d4" step="0.5" value="0"></dd>
+	<dt>Y</dt><dd class="coord"><input type="number" id="ry" class="d4" step="0.5" value="0"></dd>
+	<dt>Z</dt><dd class="coord"><input type="number" id="rz" class="d4" step="0.5" value="0"></dd>
+</dl>
+<h2>絶対座標</h2>
+<dl>
+	<dt>X</dt><dd id="ax" class="coord"></dd>
+	<dt>Y</dt><dd id="ay" class="coord"></dd>
+	<dt>Z</dt><dd id="az" class="coord"></dd>
+</dl>
+<h2>水平移動</h2>
+<dl>
+	<dt>X</dt><dd class="coord"><input type="number" id="mx" class="d4" value="0"></dd>
+	<dt>Z</dt><dd class="coord"><input type="number" id="mz" class="d4" value="0"></dd>
+</dl>
+<h2>表示設定</h2>
+<dl>
+	<dt>ブロック</dt><dd><select id="range"><option value="0">非表示</option><option value="1">境界を含まない</option><option value="2" selected>中心を含む</option><option value="3">境界を含む</option></select></dd>
+	<dt>拡大</dt><dd><input type="number" id="scale" class="d4" value="8">倍</dd>
+</dl>
+</body>
+</html>
