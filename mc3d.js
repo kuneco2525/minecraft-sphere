@@ -45,21 +45,21 @@ function drawBlocks() {
 			ctx[0].fillStyle = c01;
 			for(let x = xl; x < xr; ++x) {
 				const xi = x0 + m * x, qx = x < ox ? 0 : 1;
-				for(let z = zt; z < zb; ++z) if(Math.sqrt(Math.pow(x + qx - ox, 2) + Math.pow(z + (z < oz ? 0 : 1) - oz, 2)) <= rg) ctx[0].fillRect(xi, z0 + m * z, m, m);
+				for(let z = zt; z < zb; ++z) { if(Math.sqrt(Math.pow(x + qx - ox, 2) + Math.pow(z + (z < oz ? 0 : 1) - oz, 2)) <= rg) { ctx[0].fillRect(xi, z0 + m * z, m, m); } }
 			}
 			break;
 		case 2:
 			ctx[0].fillStyle = c02;
 			for(let x = xl; x < xr; ++x) {
 				const xi = x0 + m * x;
-				for(let z = zt; z < zb; ++z) if(Math.sqrt(Math.pow(x + 0.5 - ox, 2) + Math.pow(z + 0.5 - oz, 2)) <= rg) ctx[0].fillRect(xi, z0 + m * z, m, m);
+				for(let z = zt; z < zb; ++z) { if(Math.sqrt(Math.pow(x + 0.5 - ox, 2) + Math.pow(z + 0.5 - oz, 2)) <= rg) { ctx[0].fillRect(xi, z0 + m * z, m, m); } }
 			}
 			break;
 		case 3:
 			ctx[0].fillStyle = c03;
 			for(let x = xl; x < xr; ++x) {
 				const xi = x0 + m * x, qx = x < ox ? 1 : 0;
-				for(let z = zt; z < zb; ++z) if(Math.sqrt(Math.pow(x + qx - ox, 2) + Math.pow(z + (z < oz ? 1 : 0) - oz, 2)) < rg) ctx[0].fillRect(xi, z0 + m * z, m, m);
+				for(let z = zt; z < zb; ++z) { if(Math.sqrt(Math.pow(x + qx - ox, 2) + Math.pow(z + (z < oz ? 1 : 0) - oz, 2)) < rg) { ctx[0].fillRect(xi, z0 + m * z, m, m); } }
 			}
 	}
 }
@@ -73,7 +73,7 @@ function drawCoord() {
 		ctx[1].moveTo(xi, 0);
 		ctx[1].lineTo(xi, wh);
 		ctx[1].stroke();
-		if(!chunk) ctx[1].fillText(x, xi - 9, wh / 2);
+		if(!chunk) { ctx[1].fillText(x, xi - 9, wh / 2); }
 	}
 	for(let z = zt; z <= zb; ++z) {
 		const zi = z0 + m * z, chunk = z % 16;
@@ -82,7 +82,7 @@ function drawCoord() {
 		ctx[1].moveTo(0, zi);
 		ctx[1].lineTo(ww, zi);
 		ctx[1].stroke();
-		if(!chunk) ctx[1].fillText(z, ww / 2 - 9, zi + 4);
+		if(!chunk) { ctx[1].fillText(z, ww / 2 - 9, zi + 4); }
 	}
 }
 
@@ -146,7 +146,7 @@ aX.textContent = ox + rx;
 aY.textContent = oy + ry;
 aZ.textContent = oz + rz;
 calc();
-window.onresize = () => {
+window.addEventListener('resize', () => {
 	ww = window.innerWidth;
 	wh = window.innerHeight;
 	xc = ww / 2 - m * mx;
@@ -162,20 +162,20 @@ window.onresize = () => {
 		cv.height = wh;
 	}
 	draw();
-};
-window.onmousemove = e => {
+});
+window.addEventListener('mousemove', e => {
 	px = e.x;
 	py = e.y;
 	drawCursor();
-}
-diameter.oninput = calc;
-r7.oninput = () => {
+});
+diameter.addEventListener('input', calc);
+r7.addEventListener('input', () => {
 	const rv = r7.value * 1;
 	diameter.value -= 1.4 * (rp - rv);
 	rp = rv;
 	calc();
-};
-oX.oninput = () => {
+});
+oX.addEventListener('input', () => {
 	ox = oX.value * 1;
 	x0 = xc - m * ox;
 	xl = Math.ceil(ox - ww / 2 / m + mx);
@@ -183,12 +183,12 @@ oX.oninput = () => {
 	aX.textContent = ox + rx;
 	drawBlocks();
 	drawCoord();
-};
-oY.oninput = () => {
+});
+oY.addEventListener('input', () => {
 	oy = oY.value * 1;
 	aY.textContent = oy + ry;
-};
-oZ.oninput = () => {
+});
+oZ.addEventListener('input', () => {
 	oz = oZ.value * 1;
 	z0 = zc - m * oz;
 	zt = Math.ceil(oz - wh / 2 / m + mz);
@@ -196,8 +196,8 @@ oZ.oninput = () => {
 	aZ.textContent = oz + rz;
 	drawBlocks();
 	drawCoord();
-};
-rX.oninput = () => {
+});
+rX.addEventListener('input', () => {
 	rx = rX.value * 1;
 	aX.textContent = ox + rx;
 	d = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2) + Math.pow(rz, 2));
@@ -206,8 +206,8 @@ rX.oninput = () => {
 	drawBlocks();
 	drawCoord();
 	drawPoint();
-};
-rY.oninput = () => {
+});
+rY.addEventListener('input', () => {
 	ry = rY.value * 1;
 	aY.textContent = oy + ry;
 	d = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2) + Math.pow(rz, 2));
@@ -217,8 +217,8 @@ rY.oninput = () => {
 	rG.textContent = rg;
 	drawBlocks();
 	drawSphere();
-};
-rZ.oninput = () => {
+});
+rZ.addEventListener('input', () => {
 	rz = rZ.value * 1;
 	aZ.textContent = oz + rz;
 	d = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2) + Math.pow(rz, 2));
@@ -227,25 +227,25 @@ rZ.oninput = () => {
 	drawBlocks();
 	drawCoord();
 	drawPoint();
-};
-mX.oninput = () => {
+});
+mX.addEventListener('input', () => {
 	mx = mX.value * 1;
 	xc = ww / 2 - m * mx;
 	x0 = xc - m * ox;
 	xl = Math.ceil(ox - ww / 2 / m + mx);
 	xr = Math.floor(ox + ww / 2 / m + mx);
 	draw();
-};
-mZ.oninput = () => {
+});
+mZ.addEventListener('input', () => {
 	mz = mZ.value * 1;
 	zc = wh / 2 - m * mz;
 	z0 = zc - m * oz;
 	zt = Math.ceil(oz - wh / 2 / m + mz);
 	zb = Math.floor(oz + wh / 2 / m + mz);
 	draw();
-};
-range.oninput = drawBlocks;
-scale.oninput = () => {
+});
+range.addEventListener('input', drawBlocks);
+scale.addEventListener('input', () => {
 	m = Math.max(scale.value * 1, 1);
 	xc = ww / 2 - m * mx;
 	zc = wh / 2 - m * mz;
@@ -256,4 +256,4 @@ scale.oninput = () => {
 	zt = Math.ceil(oz - wh / 2 / m + mz);
 	zb = Math.floor(oz + wh / 2 / m + mz);
 	draw();
-};
+});
